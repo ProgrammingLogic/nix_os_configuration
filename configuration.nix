@@ -134,19 +134,6 @@ in
     atomix # puzzle game
   ]);
 
-  # Enable using xdg.mine to set default apps
-  xdg.mime.enable = true;
-
-  # Set default applications
-  xdg.mime.defaultApplications = {
-    # Web Browser
-    "text/html" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
-  };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
