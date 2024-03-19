@@ -159,6 +159,9 @@
     gnomeExtensions.appindicator
     gnome.adwaita-icon-theme
     gnome.gnome-settings-daemon
+
+    # Home Manager
+    inputs.home-manager.packages.${pkgs.system}.default
   ];
 
 
