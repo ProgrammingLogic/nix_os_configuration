@@ -2,11 +2,41 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }: {
+{ 
+  lib,
+  config, 
+  pkgs, 
+  ... 
+}: {
   imports = [ 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
   ];
+
+  nixpkgs = {
+    # You can add overlays here
+    overlays = [
+      # If you want to use overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+    };
+  };
+
+  # This will add each flake input as a registry
+  # To make nix3 commands consistent with your flake
+  # nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -109,21 +139,9 @@
   };
 
 
-  nixpkgs.config = {
-    overlays = [
-
-    ];
-    
-    config = {
-      # Allow unfree packages
-      allowUnfree = true;
-    };
-  };
-
 
   nix.settings = {
     experimental-features = "nix-command flakes";
-    auto-optimize-store = true;
   };
 
   # List packages installed in system profile. To search, run:
