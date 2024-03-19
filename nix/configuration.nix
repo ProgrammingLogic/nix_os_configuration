@@ -135,7 +135,26 @@
     gnomeExtensions.dash-to-dock
   ];
 
-  services.gnome.core-utilities.enable = false;
+
+  # Configure Gnome
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+    cheese # webcam tool
+    gnome-music
+    gedit # text editor
+    epiphany # web browser
+    geary # email reader
+    evince # document viewer
+    gnome-characters
+    totem # video player
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    atomix # puzzle game
+  ]) ++ (with pkgs.gnome; [
+    gnome-terminal
+  ]);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
