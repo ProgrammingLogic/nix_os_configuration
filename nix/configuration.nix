@@ -130,6 +130,7 @@
 
     # Gnome Extensions
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.appindicator
   ];
 
 
