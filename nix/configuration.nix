@@ -132,6 +132,7 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.appindicator
     gnome.adwaita-icon-theme
+    gnome.gnome-settings-daemon
   ];
 
 
