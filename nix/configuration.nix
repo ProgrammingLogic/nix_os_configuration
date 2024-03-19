@@ -161,4 +161,7 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
+
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true;
 }
