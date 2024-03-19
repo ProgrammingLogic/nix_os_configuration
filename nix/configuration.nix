@@ -113,20 +113,20 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	# Developer Tools
-	neovim	
+    # Developer Tools
+    neovim	
 
-	# Privacy & Security
-	protonvpn-gui
-	protonvpn-cli
+    # Privacy & Security
+    protonvpn-gui
+    protonvpn-cli
 
-	# System
-	tmux
-	wget
-	lsof
-	lshw
-	htop
-	fd
+    # System
+    tmux
+    wget
+    lsof
+    lshw
+    htop
+    fd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
