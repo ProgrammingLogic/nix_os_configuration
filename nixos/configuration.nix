@@ -12,7 +12,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "jstiverson-dellxps_laptop"; # Define your hostname.
+  networking.hostName = "jstiverson-laptop"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
