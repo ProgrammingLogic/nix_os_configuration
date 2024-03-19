@@ -99,46 +99,20 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	# Audio / video
-	vlc 
-
 	# Developer Tools
 	neovim	
-	git
-	nodejs_21
-	python3
-	vscode
-
-	# Internet
-	firefox
-
-	# Productivity
-	libreoffice
-	obsidian
-
-	# Communication
-	discord
-	signal-desktop
 
 	# Privacy & Security
 	protonvpn-gui
 	protonvpn-cli
-	bitwarden
-
-	# Entertainment
-	spotify
-	steam
 
 	# System
-	syncthing
-	syncthing-tray
 	tmux
 	wget
 	lsof
 	lshw
 	htop
 	fd
-
   ];
 
   # Exclude these gnome packages from the default install
