@@ -79,9 +79,26 @@
         pkgs.vlc 
     ];
 
-  # Enable home-manager and git
+  # Enable home-manager
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+
+
+  program.git = {
+    enable = true;
+    lfs.enable = true;
+
+    config = {
+        user.name = "Jonathyn Stiverson";
+        user.email = "jlstiverson2002@protonmail.com";
+    };
+
+
+    aliases = {
+        gc = "commit";
+        gp = "push";
+        ga = "add";
+    };
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
