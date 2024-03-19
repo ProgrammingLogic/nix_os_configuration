@@ -22,7 +22,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       # FIXME replace with your hostname
-      your-hostname = nixpkgs.lib.nixosSystem {
+      jstiverson-workstation = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
         modules = [./nixos/configuration.nix];
