@@ -12,6 +12,8 @@
   imports = [ 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      inputs.home-manager.nixosModules.home-manager
   ];
 
   nixpkgs = {
@@ -36,8 +38,15 @@
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
-  # nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
 
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = {
+      # Import your home-manager configuration
+      jstiverson = import ../home-manager/home.nix;
+    };
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
