@@ -127,6 +127,9 @@
     lshw
     htop
     fd
+
+    # Gnome Extensions
+    gnomeExtensions.dash-to-dock
   ];
 
   services.gnome.core-utilities.enable = false;
