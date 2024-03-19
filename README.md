@@ -8,3 +8,9 @@
 - https://github.com/TLATER/dotfiles/blob/b39af91fbd13d338559a05d69f56c5a97f8c905d/home-config/config/graphical-applications/firefox.nix
 - https://github.com/notusknot/dotfiles-nix/blob/main/modules/firefox/default.nix
 - https://github.com/Misterio77/nix-starter-configs/blob/main/minimal/flake.nix
+
+
+## Info on Proton VPN
+
+- https://old.reddit.com/r/NixOS/comments/12ibbl9/protonvpn_nixos_setup/
+- https://github.com/emmanuelrosa/erosanix/blob/master/modules/protonvpn.nix
