@@ -2,17 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";	
-in
-{
+{ config, pkgs, ... }: {
   imports = [ 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-
-      # Home Manager
-      (import "${home-manager}/nixos")
   ];
 
   # Bootloader.
@@ -20,11 +13,6 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "jstiverson-dellxps_laptop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -60,9 +48,6 @@ in
     xkbVariant = "";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = false;
-
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -81,7 +66,7 @@ in
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jstiverson = {
@@ -89,7 +74,36 @@ in
     description = "Jonathyn Stiverson";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+        # Internet
+        pkgs.firefox
 
+        # Development
+        pkgs.git
+        pkgs.nodejs_21
+        pkgs.python3
+        pkgs.vscode
+
+        # Productivity
+        pkgs.libreoffice
+        pkgs.obsidian
+
+        # Communication
+        pkgs.discord
+        pkgs.signal-desktop
+
+        # Privacy & Security
+        pkgs.bitwarden
+
+        # Entertainment
+        pkgs.spotify
+        pkgs.steam
+
+        # System
+        pkgs.syncthing
+        pkgs.syncthing-tray
+
+        # Audio / video
+        vlc 
     ];
   };
 
@@ -114,25 +128,6 @@ in
 	htop
 	fd
   ];
-
-  # Exclude these gnome packages from the default install
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-  ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
-    gnome-music
-    gedit # text editor
-    epiphany # web browser
-    geary # email reader
-    evince # document viewer
-    gnome-characters
-    totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-  ]);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
