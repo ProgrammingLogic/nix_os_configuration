@@ -83,7 +83,7 @@
   programs.home-manager.enable = true;
 
 
-  program.git = {
+  programs.git = {
     enable = true;
     lfs.enable = true;
 
