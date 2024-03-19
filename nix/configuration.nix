@@ -128,6 +128,9 @@
     htop
     fd
 
+    # Gnome Applications
+    gnome-terminal
+
     # Gnome Extensions
     gnomeExtensions.dash-to-dock
   ];
