@@ -7,18 +7,32 @@
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
+  
 
-  outputs = { self, nixpkgs, ... }@attrs: {
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+  outputs = { 
+    self, 
+    nixpkgs, 
+    home-manager, 
+    ... 
+  } @ inputs: 
+  let inherit (self) outputs; in {
+    nixosConfiugurations = {
+      jstiverson-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          {inherit inputs outputs};
+        };
+        
+        # Home-manager requires 'pkgs' instance
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; 
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+        modules = [
+          # System configuration
+          ./nixos/configuration.nix
 
-    nixosConfigurations.jstiverson-laptop = nixpkgs.lib.nixosSystem {
-     system = "x86_64-linux";
-     specialArgs = attrs;
-     modules = [
-      ./nixos/configuration.nix
-     ];
+          # User configuration
+          ./home-manager/home.nix
+        ];
+      };
     };
   };
 }
