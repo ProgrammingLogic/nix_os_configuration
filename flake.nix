@@ -19,7 +19,7 @@
     nixosConfiugurations = {
       jstiverson-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          {inherit inputs outputs};
+          inherit inputs outputs;
         };
         
         # # Home-manager requires 'pkgs' instance
