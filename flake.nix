@@ -16,7 +16,7 @@
     ... 
   } @ inputs: 
   let inherit (self) outputs; in {
-    nixosConfiugurations = {
+    nixosConfigurations = {
       jstiverson-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
