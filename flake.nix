@@ -17,7 +17,7 @@
      system = "x86_64-linux";
      specialArgs = attrs;
      modules = [
-      ./nixos/configuratuion.nix
+      ./nixos/configuration.nix
      ];
     };
   };
