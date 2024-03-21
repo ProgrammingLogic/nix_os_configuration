@@ -1,5 +1,8 @@
 # nix_os_configuration
 
+## TODO
+- [ ] Add hardware_configuration.nix for each device (Levano Thinkpad, Dell XPS 13, Desktop) and track with git
+
 ## Sources
 
 - https://nix-community.github.io/home-manager/index.xhtml#sec-usage-dotfiles
