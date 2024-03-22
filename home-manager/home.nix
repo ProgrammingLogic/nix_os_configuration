@@ -87,11 +87,8 @@
     enable = true;
     lfs.enable = true;
 
-    config = {
-        user.name = "Jonathyn Stiverson";
-        user.email = "jlstiverson2002@protonmail.com";
-    };
-
+    userName = "Jonathyn Stiverson";
+    userEmail = "jlstiverson2002@protonmail.com";
 
     aliases = {
         gc = "commit";
