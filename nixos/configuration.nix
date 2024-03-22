@@ -21,7 +21,7 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-  }
+  };
 
   # Configure Nix Package Manager
   nixpkgs = {
@@ -123,7 +123,7 @@
     gnome.gnome-settings-daemon
 
     # Home Manager
-    inputs.home-manager.packages.${pkgs.system}.default
+    # inputs.home-manager.packages.${pkgs.system}.default
 
     # TODO
     # Make these packages installed with home-manager
