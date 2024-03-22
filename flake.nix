@@ -18,6 +18,8 @@
   let inherit (self) outputs; in {
     nixosConfigurations = {
       jstiverson-desktop = nixpkgs.lib.nixosSystem {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
         specialArgs = {
           inherit inputs outputs;
         };
@@ -35,13 +37,12 @@
       };
 
       jstiverson-thinkpad = nixpkgs.lib.nixosSystem {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; 
+
         specialArgs = {
           inherit inputs outputs;
         };
         
-        # Home-manager requires 'pkgs' instance
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; 
-
         modules = [
           # Hardware Configuration
           ./hardware/jstiverson-thinkpad.nix
