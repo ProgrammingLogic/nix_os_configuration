@@ -46,38 +46,38 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-    home.packages = with pkgs; [
-        # Internet
-        pkgs.firefox
+  home.packages = with pkgs; [
+    # Internet
+    pkgs.firefox
 
-        # Development
-        pkgs.git
-        pkgs.nodejs_21
-        pkgs.python3
-        pkgs.vscode
+    # Development
+    pkgs.git
+    pkgs.nodejs_21
+    pkgs.python3
+    pkgs.vscode
 
-        # Productivity
-        pkgs.libreoffice
-        pkgs.obsidian
+    # Productivity
+    pkgs.libreoffice
+    pkgs.obsidian
 
-        # Communication
-        pkgs.discord
-        pkgs.signal-desktop
+    # Communication
+    pkgs.discord
+    pkgs.signal-desktop
 
-        # Privacy & Security
-        pkgs.bitwarden
+    # Privacy & Security
+    pkgs.bitwarden
 
-        # Entertainment
-        pkgs.spotify
-        pkgs.steam
+    # Entertainment
+    pkgs.spotify
+    pkgs.steam
 
-        # System
-        pkgs.syncthing
-        pkgs.syncthing-tray
+    # System
+    pkgs.syncthing
+    pkgs.syncthing-tray
 
-        # Audio / video
-        pkgs.vlc 
-    ];
+    # Audio / video
+    pkgs.vlc 
+  ];
 
   # Enable home-manager
   programs.home-manager.enable = true;
