@@ -16,10 +16,22 @@
     ... 
   } @ inputs: 
   let inherit (self) outputs; in {
-    nixosConfigurations = {
-      jstiverson-desktop = nixpkgs.lib.nixosSystem {
+    homeConfigurations = {
+      "jstiverson@jstiverson-thinkpad" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+
+        modules = [
+          ./home-manager/home.nix
+        ];
+      };
+    };
+
+    nixosConfigurations = {
+      jstiverson-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
         };
@@ -31,14 +43,10 @@
           # System configuration
           ./nixos/configuration.nix
 
-          # User configuration
-          ./home-manager/home.nix
         ];
       };
 
       jstiverson-thinkpad = nixpkgs.lib.nixosSystem {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; 
-
         specialArgs = {
           inherit inputs outputs;
         };
@@ -49,9 +57,6 @@
 
           # System configuration
           ./nixos/configuration.nix
-
-          # User configuration
-          ./home-manager/home.nix
         ];
       };
     };
