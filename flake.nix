@@ -17,7 +17,24 @@
   } @ inputs: 
   let inherit (self) outputs; in {
     nixosConfigurations = {
-      jstiverson-laptop = nixpkgs.lib.nixosSystem {
+      jstiverson-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+        };
+
+        modules = [
+	  # Hardware Configuration
+	  ./hardware/jstiverson-desktop.nix
+
+          # System configuration
+          ./nixos/configuration.nix
+
+          # # User configuration
+          # ./home-manager/home.nix
+        ];
+      };
+
+      jstiverson-thinkpad = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
         };
