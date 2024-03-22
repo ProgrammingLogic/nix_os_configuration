@@ -23,8 +23,8 @@
         };
 
         modules = [
-	  # Hardware Configuration
-	  ./hardware/jstiverson-desktop.nix
+          # Hardware Configuration
+          ./hardware/jstiverson-desktop.nix
 
           # System configuration
           ./nixos/configuration.nix
