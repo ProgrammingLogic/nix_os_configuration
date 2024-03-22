@@ -43,6 +43,9 @@
         # pkgs = nixpkgs.legacyPackages.x86_64-linux; 
 
         modules = [
+          # Hardware Configuration
+          ./hardware/jstiverson-thinkpad.nix
+
           # System configuration
           ./nixos/configuration.nix
 
