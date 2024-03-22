@@ -1,5 +1,8 @@
 # nix_os_configuration
 
+## TODO
+- [ ] Add hardware_configuration.nix for each device (Levano Thinkpad, Dell XPS 13, Desktop) and track with git
+
 ## Sources
 
 - https://nix-community.github.io/home-manager/index.xhtml#sec-usage-dotfiles
@@ -14,3 +17,7 @@
 
 - https://old.reddit.com/r/NixOS/comments/12ibbl9/protonvpn_nixos_setup/
 - https://github.com/emmanuelrosa/erosanix/blob/master/modules/protonvpn.nix
+
+## Flakes Information
+
+- https://nixos.wiki/wiki/Flakes

@@ -5,79 +5,46 @@
 { 
   inputs,
   outputs,
-  lib,
   config,
   pkgs,
   ...
 }: {
   imports = [ 
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-
-      inputs.home-manager.nixosModules.home-manager
+    # Currently no imports
+    # Might want to import ./hardware-configuration.nix at some point?
   ];
 
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
+  # Configure Nix OS 
+  nix = {
+    package = pkgs.nixUnstable;
 
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
+  # Configure Nix Package Manager
+  nixpkgs = {
+    overlays = [
+      # No overlays to define
     ];
-    # Configure your nixpkgs instance
+
     config = {
-      # Disable if you don't want unfree packages
+      # Allow unfree software
       allowUnfree = true;
     };
   };
 
-
-  # This will additionally add your inputs to the system's legacy channels
-  # Making legacy nix commands consistent as well, awesome!
-  nix.nixPath = ["/etc/nix/path"];
-  environment.etc =
-    lib.mapAttrs'
-    (name: value: {
-      name = "nix/path/${name}";
-      value.source = value.flake;
-    })
-    config.nix.registry;
-
-
-
-  # This will add each flake input as a registry
-  # To make nix3 commands consistent with your flake
-  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-      # Import your home-manager configuration
-      jstiverson = import ../home-manager/home.nix;
-    };
-  };
-
-  # Bootloader.
+  # Bootloader.Configuration
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "jstiverson-workstation"; # Define your hostname.
-
-  # Enable networking
+  # networkmanager Configuration
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Locale Settings
   time.timeZone = "America/Chicago";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -90,20 +57,18 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
+  # X11 / Desktop Environment Configuration
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.libinput.enable = true;
 
-  # Configure keymap in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
   };
 
-  # Enable sound with pipewire.
+  # Audio Configuration w/ Pipewire
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -115,10 +80,8 @@
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User Configuration
+  # Might need to be moved to home-manager?
   users.users.jstiverson = {
     isNormalUser = true;
     initialPassword = "changeme22!";
@@ -131,14 +94,12 @@
     ];
   };
 
-
-
+  # Nix OS Settings
   nix.settings = {
     experimental-features = "nix-command flakes";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # Which system packages to install
   environment.systemPackages = with pkgs; [
     # Developer Tools
     neovim	
@@ -162,21 +123,54 @@
     gnome.gnome-settings-daemon
 
     # Home Manager
-    inputs.home-manager.packages.${pkgs.system}.default
+    # inputs.home-manager.packages.${pkgs.system}.default
+
+    # TODO
+    # Make these packages installed with home-manager
+    firefox
+
+    # Development
+    git
+    nodejs_21
+    python3
+    vscode
+
+    # Productivity
+    libreoffice
+    obsidian
+
+    # Communication
+    discord
+    signal-desktop
+
+    # Privacy & Security
+    bitwarden
+
+    # Entertainment
+    spotify
+    steam
+
+    # System
+    syncthing
+    syncthing-tray
+
+    # Audio / video
+    vlc 
   ];
 
+  # Discord requires this "insecure" package
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
+  # Key manager configuration
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
 
-  # List services that you want to enable:
-
-  # Configure OpenSSH daemon
+  # System service configuration
+  # OpenSSH Daeemon
   services.openssh = {
     enable = true;
     settings = {
@@ -185,23 +179,17 @@
     };
   };
 
-  # Open ports in the firewall.
+  # Firewall Configuration
+  # TODO
+  # - Update firewall configuration to only allow inbound from 192.168.86.0/24
+  # - Look into having different policies for different networks. Nothing allowed on public,
+  #   less restrictive on private (home Wi-Fi).
   networking.firewall.allowedTCPPorts = [
     22
   ];
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  # System configuration
   system.stateVersion = "23.11"; # Did you read the comment?
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
 }
