@@ -14,6 +14,15 @@
     # Might want to import ./hardware-configuration.nix at some point?
   ];
 
+  # Configure Nix OS 
+  nix = {
+    package = pkgs.nixUnstable;
+
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  }
+
   # Configure Nix Package Manager
   nixpkgs = {
     overlays = [
