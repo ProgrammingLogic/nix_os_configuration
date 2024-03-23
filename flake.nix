@@ -25,6 +25,8 @@
 
     lib = nixpkgs.lib;
 
+    inherit (self) outputs;
+
   in {
     homeManagerConfigurations = {
       jstiverson = home-manager.lib.homeManagerConfiguration {
