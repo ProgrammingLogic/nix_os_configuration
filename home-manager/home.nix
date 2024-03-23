@@ -14,10 +14,6 @@
     overlays = [];
 
     # Might be able to these, not sure.
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-    };
   };
 
   # Nicely reload system units when changing configs
