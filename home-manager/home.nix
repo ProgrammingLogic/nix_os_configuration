@@ -2,7 +2,8 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs, lib, config, pkgs, ... }:
 let 
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  home-manager.url = "github:nix-community/home-manager/release-23.05";
+  home-manager.inputs.nixpkgs.follows = "nixpkgs";
 in
 {
   imports = [
