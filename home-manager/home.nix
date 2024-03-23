@@ -34,34 +34,34 @@ in
 
       packages = [
         # Internet
-        firefox
+        pkgs.firefox
 
         # Development
-        git
-        python3
-        vscode
+        pkgs.git
+        pkgs.python3
+        pkgs.vscode
 
         # Productivity
-        libreoffice
-        obsidian
+        pkgs.libreoffice
+        pkgs.obsidian
 
         # Communication
-        discord
-        signal-desktop
+        pkgs.discord
+        pkgs.signal-desktop
 
         # Privacy & Security
-        bitwarden
+        pkgs.bitwarden
 
         # Entertainment
-        spotify
-        steam
+        pkgs.spotify
+        pkgs.steam
 
         # System
-        syncthing
-        syncthing-tray
+        pkgs.syncthing
+        pkgs.syncthing-tray
 
         # Audio / video
-        vlc 
+        pkgs.vlc 
       ];
 
       programs = {
