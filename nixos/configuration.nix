@@ -34,40 +34,33 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # X11 / Desktop Environment Configuration
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.libinput.enable = true;
-
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
 
   # Audio Configuration w/ Pipewire
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
 
-  # Which system packages to install
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+    "electron-25.8.6"
+  ];
+
+  # System  programs
+  ## Installs
   environment.systemPackages = with pkgs; [
     # Developer Tools
     neovim	
+    git
 
     # Privacy & Security
     protonvpn-gui
     protonvpn-cli
 
     # System
+    zsh
     tmux
     wget
     lsof
@@ -81,46 +74,75 @@
     gnome.adwaita-icon-theme
     gnome.gnome-settings-daemon
 
-	# Home Manager 
-	home-manager
+    # Home Manager 
+    home-manager
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-    "electron-25.8.6"
-  ];
+  ## Configuration
+  programs = {
+    zsh = {
+      enable = true;
+    };
 
-  # Key manager configuration
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  # System service configuration
-  # OpenSSH Daeemon
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
+    # Key manager configuration
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
   };
 
-  # Firewall Configuration
+  # System services
+  services = {
+    # X11 / Desktop Environment Configuration
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      libinput.enable = true;
+
+      layout = "us";
+      xkbVariant = "";
+    };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+
+    openssh = {
+      enable = true;
+
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+    };
+  };
+
   # TODO
   # - Update firewall configuration to only allow inbound from 192.168.86.0/24
   # - Look into having different policies for different networks. Nothing allowed on public,
   #   less restrictive on private (home Wi-Fi).
-  networking.firewall.allowedTCPPorts = [
-    22
-  ];
+  networking.firewall = {
+    allowedTCPPorts = [
+      22
+    ];
+  };
 
   # System configuration
-  system.stateVersion = "23.11"; # Did you read the comment?
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
+  system =  {
+    stateVersion = "23.11";
+    autoUpgrade.enable = true;
 
-  # User config
+    # TODO
+    # - Check if auto reboots can be set to only occur at certain times, 
+    #   or if the system is idle. 
+    autoUpgrade.allowReboot = false;
+  };
+
+  # Primary account configuration
   users.users.jstiverson = {
     isNormalUser = true;
     initialPassword = "changeme22!";
