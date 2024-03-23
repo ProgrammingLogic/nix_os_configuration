@@ -33,4 +33,3 @@ else
 fi
 
 sudo nixos-rebuild switch --flake ".#$device_hostname"
-home-manager --flake ".#jstiverson@$device_hostname" switch
