@@ -26,10 +26,12 @@
 
     lib = nixpkgs.lib;
 
+    home-manager = home-manager;
+
   in {
     homeManagerConfigurations = {
       jstiverson = home-manager.lib.homeManagerConfiguration {
-        inherit system pkgs;
+        inherit system pkgs home-manager;
 
         username = "jstiverson";
         homeDirectory = "/home/jstiverson/";
@@ -44,7 +46,7 @@
 
     nixosConfigurations = {
       jstiverson-desktop = nixpkgs.lib.nixosSystem {
-        inherit lib pkgs;
+        inherit lib pkgs home-manager;
 
         modules = [
           # Hardware Configuration

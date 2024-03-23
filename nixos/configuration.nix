@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, pkgs, ... }:
+{ home-manager, lib, pkgs, ... }:
 {
   # User Configuration
   # Might need to be moved to home-manager?
@@ -97,7 +97,7 @@
     gnome.gnome-settings-daemon
 
     # Home Manager
-    inputs.home-manager.packages.${pkgs.system}.default
+    home-manager.packages.${pkgs.system}.default
 
     # TODO
     # Make these packages installed with home-manager
