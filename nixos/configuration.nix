@@ -2,21 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ home-manager, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
-  # User Configuration
-  # Might need to be moved to home-manager?
-  users.users.jstiverson = {
-    isNormalUser = true;
-    initialPassword = "changeme22!";
-    description = "Jonathyn Stiverson";
-    extraGroups = [ "networkmanager" "wheel" ];
-
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyA94BA6rCIb8Zz2/3EbvdYIgG9gS98baoKA3E0s1a5 jstiverson@nixos"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPlXe5keHP0Nj8DWxcppx/3GKn+4GzNarQ44cxKr4eZD jstiverson@nixos"
-    ];
-  };
 
   nix.nixPath = ["/etc/nix/path"];
 
@@ -96,9 +83,6 @@
     gnome.adwaita-icon-theme
     gnome.gnome-settings-daemon
 
-    # Home Manager
-    home-manager.packages.${pkgs.system}.default
-
     # TODO
     # Make these packages installed with home-manager
     firefox
@@ -166,4 +150,17 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
+
+  # User config
+  users.users.jstiverson = {
+    isNormalUser = true;
+    initialPassword = "changeme22!";
+    description = "Jonathyn Stiverson";
+    extraGroups = [ "networkmanager" "wheel" "power"];
+
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyA94BA6rCIb8Zz2/3EbvdYIgG9gS98baoKA3E0s1a5 jstiverson@nixos"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPlXe5keHP0Nj8DWxcppx/3GKn+4GzNarQ44cxKr4eZD jstiverson@nixos"
+    ];
+  };
 }
