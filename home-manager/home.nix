@@ -2,10 +2,6 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { flake, pkgs, ... }:
 {
-  imports = [
-    (import "${home-manager}/nixos")
-  ];
-
   nix = {
     registry.nixpkgs.flake = flake.inputs.nixpkgs;
 
