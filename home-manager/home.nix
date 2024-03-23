@@ -48,35 +48,35 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
     # Internet
-    pkgs.firefox
+    firefox
 
     # Development
-    pkgs.git
-    pkgs.nodejs_21
-    pkgs.python3
-    pkgs.vscode
+    git
+    nodejs_21
+    python3
+    vscode
 
     # Productivity
-    pkgs.libreoffice
-    pkgs.obsidian
+    libreoffice
+    obsidian
 
     # Communication
-    pkgs.discord
-    pkgs.signal-desktop
+    discord
+    signal-desktop
 
     # Privacy & Security
-    pkgs.bitwarden
+    bitwarden
 
     # Entertainment
-    pkgs.spotify
-    pkgs.steam
+    spotify
+    steam
 
     # System
-    pkgs.syncthing
-    pkgs.syncthing-tray
+    syncthing
+    syncthing-tray
 
     # Audio / video
-    pkgs.vlc 
+    vlc 
   ];
 
   # Enable home-manager
