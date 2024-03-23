@@ -10,9 +10,20 @@
   pkgs,
   ...
 }: {
-  imports = [ 
-    ../home-manager/home.nix
-  ];
+
+  # I have no idea if this will work :D 
+  outputs  = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let 
+    inherit (self) outputs;
+  in {
+    imports = [
+      ../home-manager/home.nix
+    ];
+  };
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
