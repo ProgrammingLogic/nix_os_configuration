@@ -14,13 +14,11 @@
     # Might want to import ./hardware-configuration.nix at some point?
   ];
 
-  # Configure Nix OS 
-  nix = {
-    package = pkgs.nixUnstable;
+  nix.settings = {
+    experimental-features = "nix-command flakes";
 
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
+    # Deduplicate and optimize nix store
+    auto-optimise-store = true;
   };
 
   # Configure Nix Package Manager
