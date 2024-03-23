@@ -31,8 +31,8 @@
   home-manager.users.jstiverson  =  { ... }: {
     imports = [
       ../home-manager/home.nix
-    ]
-  }
+    ];
+  };
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
