@@ -13,6 +13,7 @@
 
     pkgs = import nixpkgs {
       inherit system;
+
       config =  {
         overlays = [ ];
 
@@ -43,7 +44,7 @@
 
     nixosConfigurations = {
       jstiverson-desktop = nixpkgs.lib.nixosSystem {
-        inherit lib config pkgs;
+        inherit lib pkgs;
 
         modules = [
           # Hardware Configuration
@@ -55,7 +56,7 @@
       };
 
       jstiverson-thinkpad = nixpkgs.lib.nixosSystem {
-        inherit lib config pkgs;
+        inherit lib pkgs;
         
         modules = [
           # Hardware Configuration
