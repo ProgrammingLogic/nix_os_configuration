@@ -18,20 +18,6 @@
     ... 
   } @ inputs: 
   let inherit (self) outputs; in {
-    homeConfigurations = {
-      "jstiverson@jstiverson-thinkpad" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
-        extraSpecialArgs = {
-          inherit inputs outputs;
-        };
-
-        modules = [
-          ./home-manager/home.nix
-        ];
-      };
-    };
-
     nixosConfigurations = {
       jstiverson-desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {
