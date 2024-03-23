@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, outputs, lib, config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 {
   # User Configuration
   # Might need to be moved to home-manager?

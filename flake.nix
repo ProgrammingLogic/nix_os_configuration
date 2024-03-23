@@ -9,7 +9,7 @@
 
   outputs = { self, nixpkgs, home-manager, ... }:
   let 
-    system =  "x86_64-linux";
+    system = "x86_64-linux";
 
     pkgs = import nixpkgs {
       inherit system;
@@ -24,8 +24,6 @@
     };
 
     lib = nixpkgs.lib;
-
-    inherit (self) outputs;
 
   in {
     homeManagerConfigurations = {
@@ -45,9 +43,7 @@
 
     nixosConfigurations = {
       jstiverson-desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-        };
+        inherit lib config pkgs;
 
         modules = [
           # Hardware Configuration
@@ -59,9 +55,7 @@
       };
 
       jstiverson-thinkpad = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-        };
+        inherit lib config pkgs;
         
         modules = [
           # Hardware Configuration
