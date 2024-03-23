@@ -115,11 +115,6 @@
     vlc 
   ];
 
-  # Discord requires this "insecure" package
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
   # Key manager configuration
   programs.gnupg.agent = {
     enable = true;

@@ -19,6 +19,11 @@
 
         allowUnfree = true;
         allowUnfreePredicate = _: true;
+
+        # Discord requires this "insecure" package
+        permittedInsecurePackages = [
+          "electron-25.9.0"
+        ];
       };
     };
 
