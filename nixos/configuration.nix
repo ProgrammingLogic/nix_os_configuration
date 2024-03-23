@@ -14,10 +14,25 @@
     
   ];
 
-  home-manager.users.jstiverson  =  [
-    import ../home-manager/home.nix
-  ];
+  # User Configuration
+  # Might need to be moved to home-manager?
+  users.users.jstiverson = {
+    isNormalUser = true;
+    initialPassword = "changeme22!";
+    description = "Jonathyn Stiverson";
+    extraGroups = [ "networkmanager" "wheel" ];
 
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyA94BA6rCIb8Zz2/3EbvdYIgG9gS98baoKA3E0s1a5 jstiverson@nixos"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPlXe5keHP0Nj8DWxcppx/3GKn+4GzNarQ44cxKr4eZD jstiverson@nixos"
+    ];
+  };
+
+  home-manager.users.jstiverson  =  { ... }: {
+    imports = [
+      ../home-manager/home.nix
+    ]
+  }
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
@@ -99,19 +114,6 @@
     pulse.enable = true;
   };
 
-  # User Configuration
-  # Might need to be moved to home-manager?
-  users.users.jstiverson = {
-    isNormalUser = true;
-    initialPassword = "changeme22!";
-    description = "Jonathyn Stiverson";
-    extraGroups = [ "networkmanager" "wheel" ];
-
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyA94BA6rCIb8Zz2/3EbvdYIgG9gS98baoKA3E0s1a5 jstiverson@nixos"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPlXe5keHP0Nj8DWxcppx/3GKn+4GzNarQ44cxKr4eZD jstiverson@nixos"
-    ];
-  };
 
   # Which system packages to install
   environment.systemPackages = with pkgs; [
