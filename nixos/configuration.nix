@@ -10,20 +10,14 @@
   pkgs,
   ...
 }: {
+  imports = [
+    
+  ];
 
-  # I have no idea if this will work :D 
-  outputs  = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let 
-    inherit (self) outputs;
-  in {
-    imports = [
-      ../home-manager/home.nix
-    ];
-  };
+  home-manager.users.jstiverson  =  [
+    import ../home-manager/home.nix
+  ];
+
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
@@ -212,4 +206,6 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
+
+
 }
