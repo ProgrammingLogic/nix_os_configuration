@@ -10,24 +10,13 @@
     };
   };
 
-  nixpkgs = {
-    overlays = [];
-
-    # Might be able to these, not sure.
-  };
-
-  # Nicely reload system units when changing configs
+  programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";
 
   home-manager.users.jstiverson  = {
-    programs.home-manager.enable = true;
-
     home = {
       # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
       stateVersion = "23.05";
-
-      username  = "jstiverson";
-      homeDirectory = "/home/jstiverson";
 
       packages = [
         # Internet
