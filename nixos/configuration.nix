@@ -107,11 +107,6 @@
     ];
   };
 
-  # Nix OS Settings
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-  };
-
   # Which system packages to install
   environment.systemPackages = with pkgs; [
     # Developer Tools
