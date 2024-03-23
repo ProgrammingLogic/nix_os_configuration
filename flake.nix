@@ -12,7 +12,7 @@
     system =  "x86_64-linux";
 
     pkgs = import nixpkgs {
-      inherit systemm;
+      inherit system;
       config =  {
         overlays = [ ];
 
