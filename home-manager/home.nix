@@ -52,7 +52,6 @@
 
     # Development
     git
-    nodejs_21
     python3
     vscode
 
