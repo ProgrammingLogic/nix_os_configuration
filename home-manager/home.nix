@@ -15,9 +15,9 @@
       pkgs.firefox
 
       # Development
-      pkgs.git
       pkgs.python3
       pkgs.vscode
+      pkgs.git
 
       # Productivity
       pkgs.libreoffice
