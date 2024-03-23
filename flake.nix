@@ -17,10 +17,8 @@
       config =  {
         overlays = [ ];
 
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
       };
     };
 
