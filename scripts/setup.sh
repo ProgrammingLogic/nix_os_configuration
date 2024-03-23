@@ -33,3 +33,4 @@ else
 fi
 
 sudo nixos-rebuild switch --flake ".#$device_hostname"
+nix run . -- build --flake .

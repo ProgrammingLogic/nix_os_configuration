@@ -4,9 +4,7 @@
 
 { lib, pkgs, ... }:
 {
-
-  nix.nixPath = ["/etc/nix/path"];
-
+  # nix.nixPath = ["/etc/nix/path"];
   nix.settings = {
     experimental-features = "nix-command flakes";
 
@@ -82,6 +80,14 @@
     gnomeExtensions.appindicator
     gnome.adwaita-icon-theme
     gnome.gnome-settings-daemon
+
+	# Home Manager 
+	home-manager
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+    "electron-25.8.6"
   ];
 
   # Key manager configuration

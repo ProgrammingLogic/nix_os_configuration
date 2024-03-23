@@ -2,9 +2,12 @@
   description = "My personal Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }:
@@ -14,15 +17,16 @@
     pkgs = import nixpkgs {
       inherit system;
 
+
       config =  {
         overlays = [ ];
 
         allowUnfree = true;
         allowUnfreePredicate = _: true;
 
-        # Discord requires this "insecure" package
         permittedInsecurePackages = [
           "electron-25.9.0"
+          "electron-25.8.6"
         ];
       };
     };
@@ -30,20 +34,17 @@
     lib = nixpkgs.lib;
 
   in {
-    homeManagerConfigurations = {
-      jstiverson = home-manager.lib.homeManagerConfiguration {
-        inherit system pkgs;
+     defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
 
-        username = "jstiverson";
-        homeDirectory = "/home/jstiverson/";
-
-        configuration = {
-          imports = [
-            ./home-manager/home.nix
-          ];
-        };
-      };
-    };
+     homeConfigurations = {
+       jstiverson = home-manager.lib.homeManagerConfiguration {
+	 inherit pkgs;
+ 
+         modules = [
+           ./home-manager/home.nix
+	 ];
+       };
+     };
 
     nixosConfigurations = {
       jstiverson-desktop = nixpkgs.lib.nixosSystem {
