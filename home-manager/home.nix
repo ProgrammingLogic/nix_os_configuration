@@ -11,7 +11,7 @@
 
     gc = {
       automatic = true;
-    }
+    };
   };
 
   nixpkgs = {
