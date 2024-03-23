@@ -40,7 +40,7 @@
         inherit pkgs;
 
         modules = [
-          ./home-manager/home.nix
+          ./nixos/home.nix
         ];
       };
      };
@@ -51,7 +51,7 @@
 
         modules = [
           # Hardware Configuration
-          ./hardware/jstiverson-desktop.nix
+          ./nixos/hardware/jstiverson-desktop.nix
 
           # System configuration
           ./nixos/configuration.nix
@@ -63,7 +63,7 @@
         
         modules = [
           # Hardware Configuration
-          ./hardware/jstiverson-thinkpad.nix
+          ./nixos/hardware/jstiverson-thinkpad.nix
 
           # System configuration
           ./nixos/configuration.nix
