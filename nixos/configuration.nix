@@ -10,8 +10,7 @@
   ...
 }: {
   imports = [ 
-    # Currently no imports
-    # Might want to import ./hardware-configuration.nix at some point?
+    ../home-manager/home.nix
   ];
 
   # This will add each flake input as a registry
