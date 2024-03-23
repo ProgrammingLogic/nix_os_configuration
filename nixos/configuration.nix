@@ -82,37 +82,6 @@
     gnomeExtensions.appindicator
     gnome.adwaita-icon-theme
     gnome.gnome-settings-daemon
-
-    # TODO
-    # Make these packages installed with home-manager
-    firefox
-
-    # Development
-    git
-    python3
-    vscode
-
-    # Productivity
-    libreoffice
-    obsidian
-
-    # Communication
-    discord
-    # signal-desktop
-
-    # Privacy & Security
-    bitwarden
-
-    # Entertainment
-    spotify
-    steam
-
-    # System
-    syncthing
-    syncthing-tray
-
-    # Audio / video
-    vlc 
   ];
 
   # Key manager configuration
