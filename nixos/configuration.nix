@@ -14,6 +14,10 @@
     # Might want to import ./hardware-configuration.nix at some point?
   ];
 
+  # This will add each flake input as a registry
+  # To make nix3 commands consistent with your flake
+  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+
   nix.settings = {
     experimental-features = "nix-command flakes";
 
