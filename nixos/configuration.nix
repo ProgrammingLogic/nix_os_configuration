@@ -4,10 +4,6 @@
 
 { inputs, outputs, lib, config, pkgs, ... }:
 {
-  imports = [
-    ../home-manager/home.nix
-  ];
-
   # User Configuration
   # Might need to be moved to home-manager?
   users.users.jstiverson = {
@@ -43,18 +39,6 @@
 
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
-  };
-
-  # Configure Nix Package Manager
-  nixpkgs = {
-    overlays = [
-      # No overlays to define
-    ];
-
-    config = {
-      # Allow unfree software
-      allowUnfree = true;
-    };
   };
 
   # Bootloader.Configuration
