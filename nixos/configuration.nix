@@ -12,6 +12,18 @@
     auto-optimise-store = true;
   };
 
+  # System configuration
+  system =  {
+    stateVersion = "23.11";
+    autoUpgrade.enable = true;
+
+    # TODO
+    # - Check if auto reboots can be set to only occur at certain times, 
+    #   or if the system is idle. 
+    autoUpgrade.allowReboot = false;
+  };
+
+
   # Bootloader.Configuration
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -39,14 +51,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-
-
-
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-    "electron-25.8.6"
-  ];
 
   # System  programs
   ## Installs
@@ -129,17 +133,6 @@
     allowedTCPPorts = [
       22
     ];
-  };
-
-  # System configuration
-  system =  {
-    stateVersion = "23.11";
-    autoUpgrade.enable = true;
-
-    # TODO
-    # - Check if auto reboots can be set to only occur at certain times, 
-    #   or if the system is idle. 
-    autoUpgrade.allowReboot = false;
   };
 
   # Primary account configuration

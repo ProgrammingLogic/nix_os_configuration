@@ -7,8 +7,8 @@
   home = {
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "23.05";
-	username = "jstiverson";
-	homeDirectory = "/home/jstiverson";
+    username = "jstiverson";
+    homeDirectory = "/home/jstiverson";
 
     packages = [
       # Internet
@@ -17,6 +17,7 @@
       # Development
       pkgs.python3
       pkgs.vscode
+      pkgs.git
 
       # Productivity
       pkgs.libreoffice
@@ -57,15 +58,4 @@
       };
     };
   };
-
-
-  nixpkgs.config = {
-    permittedInsecurePackages = [
-      "electron-25.9.0"
-      "electron-25.8.6"
-    ];
-    
-    allowUnfree = true;
-  };
-
 }

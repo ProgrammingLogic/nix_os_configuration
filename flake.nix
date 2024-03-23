@@ -32,18 +32,17 @@
     };
 
     lib = nixpkgs.lib;
-
   in {
      defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
 
      homeConfigurations = {
-       jstiverson = home-manager.lib.homeManagerConfiguration {
-	 inherit pkgs;
- 
-         modules = [
-           ./home-manager/home.nix
-	       ];
-       };
+      jstiverson = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          ./home-manager/home.nix
+        ];
+      };
      };
 
     nixosConfigurations = {
