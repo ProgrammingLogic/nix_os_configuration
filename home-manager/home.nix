@@ -11,7 +11,6 @@
   };
 
   programs.home-manager.enable = true;
-  systemd.user.startServices = "sd-switch";
 
   home-manager.users.jstiverson  = {
     home = {
